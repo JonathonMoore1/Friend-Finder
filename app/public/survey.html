@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Love+Ya+Like+A+Sister" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <title>Friend Finder</title>
+</head>
+<body>
+    
+    <div class="container">
+        <h2>Survey Questions</h2>
+        <hr>
+        <h3>
+            <strong>About You</strong>
+        </h3>
+        <h4>Name (Required)</h4>
+        <input type="text" id="name" class="form-control" required>
+        <h4>Link to a Photo Image (Required)</h4>
+        <input type="text" id="photo" class="form-control" required>
+
+        <hr>
+        
+        <form class="form-inline" id="question-space">
+            <h3>
+                <strong>Question 1</strong>
+            </h3>
+            <label for="q1_selection">
+                <h4>Your mind is always buzzing with unexplored ideas and plans.</h4>
+            </label>
+            <select class="custom-select mr-sm-2" id="q1_selection">
+                <option selected>Select an Option</option>
+                <option value="1">1 (Strongly disagree)</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5(Strongly agree)</option>
+            </select>
+
+            <br><br>
+
+            <h3>
+                <strong>Question 2</strong>
+            </h3>
+            <label for="q2_selection">
+                <h4>You don't mind if some clothes are left on the floor.</h4>
+            </label>
+            <select class="custom-select mr-sm-2" id="q2_selection">
+                <option selected>Select an Option</option>
+                <option value="1">1 (Strongly disagree)</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5(Strongly agree)</option>
+            </select>
+            
+            <br><br>
+            
+            <h3>
+                <strong>Question 3</strong>
+            </h3><br>
+            <label for="q3_selection">
+                <h4>Not only are you a nail-biter, but you discard said nails onto the nearest carpet.</h4>
+            </label>
+            <select class="custom-select mr-sm-2" id="q3_selection">
+                <option selected>Select an Option</option>
+                <option value="1">1 (Strongly disagree)</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5(Strongly agree)</option>
+            </select>
+
+            <hr>
+
+            <button type="submit" class="btn btn-primary mt-3 mb-0 float-left">Submit</button>
+        
+        </form>
+        <hr>
+        <div class="footer">
+            <div class="container">
+                <a href="/api/friends">API Friends List</a>
+                |
+                <a href="https://github.com/JonathonMoore1/Friend-Finder">GitHub Repo</a>
+            </div>
+        </div>
+        
+    </div>
+<script type="text/javascript">
+    // $(document).on('ready', function() {
+    //     var surveyArr = [
+    //         "Your mind is always buzzing with unexplored ideas and plans.",
+    //         "You don't mind if some clothes are left on the floor.",
+    //         "You're a nail-biter.",
+    //         "People frequently strike you as being 'too' nice.",
+    //         "People often complement you on your good looks and intelligence.",
+    //         "Negative interactions affect you more than others.",
+    //         "You'd rather watch a movie or read a book than spend time outdoors.",
+    //         "Other people wish they could be you, or at least with you."
+    //     ];
+
+    //     var questionSpace = $('#question-space');
+
+    //     for (i = 0; i < surveyArr.length; i++) {
+    //         var qDiv = "<div>";
+
+    //         var qTitle = '<h3>' + '<strong>' + 'Question ' + i + 1;
+    //         var qContent = '<h4>' + survey[i].val();
+            
+    //         qDiv.append(qTitle + qContent);
+    //         questionSpace.append(qDiv);
+    //     }
+    // })
+</script>
+</body>
+</html>
