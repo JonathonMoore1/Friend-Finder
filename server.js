@@ -10,8 +10,8 @@ app.use(bp.urlencoded({ extended: false}));
 app.use(bp.json());
 
 // Routing
-require('./routes/apiRoutes.js');
-require('./routes/htmlRoutes.js');
+require('./app/routes/apiRoutes.js');
+require('./app/routes/htmlRoutes.js');
 
 // Listening
 app.listen(PORT, function(err) {
