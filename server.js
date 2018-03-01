@@ -1,7 +1,7 @@
 // Dependencies
 var express = require('express');
 var bp = require('body-parser');
-var path = require('path');
+//var path = require('path');
 
 // Express Configuration
 var app = express();
@@ -9,12 +9,13 @@ var PORT = process.env.PORT || 8080;
 
 app.use(bp.urlencoded({ extended: false}));
 app.use(bp.json());
-app.get('/test', function(req, res) {
-    path.send('')
-})
+// app.get('/test', function(req, res) {
+//     path.send('')
+// })
+
 // Routing
-require('./app/routes/apiRoutes.js');
-require('./app/routes/htmlRoutes.js');
+require('./app/routes/apiRoutes.js')(app);
+require('./app/routes/htmlRoutes.js')(app);
 
 // Listening
 app.listen(PORT, function(err) {

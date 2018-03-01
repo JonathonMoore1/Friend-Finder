@@ -1,1 +1,15 @@
-module.exports = console.log('HTML routes working');
+// Dependencies
+var path = require('path');
+
+// Export GET and POST requests
+module.exports = function(app) {
+    app.get('/home', function(req, res) {
+        res.sendFile(path.join('../public/home.html'));
+        console.log('Displaying homepage...');
+    });
+
+    app.get('/survey', function(req, res) {
+        res.sendFile(path.join('../public/survey.html'));
+        console.log('Displaying survey');
+    });
+}
