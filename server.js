@@ -9,7 +9,9 @@ var PORT = process.env.PORT || 8080;
 
 app.use(bp.urlencoded({ extended: false}));
 app.use(bp.json());
-
+app.get('/test', function(req, res) {
+    path.send('')
+})
 // Routing
 require('./app/routes/apiRoutes.js');
 require('./app/routes/htmlRoutes.js');
