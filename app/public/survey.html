@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Love+Ya+Like+A+Sister" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
     <title>Friend Finder</title>
 </head>
 <body>
@@ -212,17 +217,18 @@
         e.preventDefault();
 
         // Form validation
-        // function validateForm() {
-        //     var isValid = true;
-        //     $('.form-control').each(function () {
-        //         if ($(this).val() === "") {
-        //             isValid = false;
-        //         }
-        //         return isValid;
-        //     });           
-        // };
+        function validateForm() {
+            var isValid = true;
+            $('.form-control').each(function () {
+                if ($(this).val() === "") {
+                    isValid = false;
+                    return isValid;
+                }
+            });  
+            return isValid;         
+        };
 
-       // if (validateForm()) {
+       if (validateForm()) {
             // Grab form elements 
             var newFriend = {
                 name: $('#name').val().trim(),
@@ -241,12 +247,14 @@
 
             $.post('/api/friends', newFriend, function (data) {
                 if (data) {
+
+                    
                     $('#match-name').text(data.name);
                     $('#match-img').attr('src', data.photo);
-                    $('#results-modal').modal('toggle');
+                    $('#results-modal').modal({show: true});
                 }
             });
-       // } 
+       } 
         // else {
         //     console.log("Submission attempted...");
         //     alert("Please fill out all fields before submitting!");        
