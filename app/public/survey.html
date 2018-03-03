@@ -7,7 +7,7 @@
     <title>Friend Finder</title>
 </head>
 <body>
-    
+
     <div class="container">
         <h2>Survey Questions</h2>
         <hr>
@@ -21,14 +21,14 @@
 
         <hr>
 
-        <form class="form-inline" id="question-space">
+        <form class="form-group" id="question-space">
             <h3>
                 <strong>Question 1</strong>
             </h3>
             <label for="q1_selection">
                 <h4>Your mind is always buzzing with unexplored ideas and plans.</h4>
             </label>
-            <select class="custom-select mr-sm-2 col-3" id="q1_selection">
+            <select class="form-control custom-select mr-sm-2 col-3 question" id="q1_selection">
                 <option selected>Select an Option</option>
                 <option value="1">1 (Strongly disagree)</option>
                 <option value="2">2</option>
@@ -37,7 +37,8 @@
                 <option value="5">5(Strongly agree)</option>
             </select>
 
-            <br><br>
+            <br>
+            <br>
 
             <h3>
                 <strong>Question 2</strong>
@@ -45,7 +46,7 @@
             <label for="q2_selection">
                 <h4>You don't mind if some clothes are left on the floor.</h4>
             </label>
-            <select class="custom-select mr-sm-2" id="q2_selection">
+            <select class="form-control custom-select mr-sm-2 col-3 question" id="q2_selection">
                 <option selected>Select an Option</option>
                 <option value="1">1 (Strongly disagree)</option>
                 <option value="2">2</option>
@@ -53,16 +54,17 @@
                 <option value="4">4</option>
                 <option value="5">5(Strongly agree)</option>
             </select>
-            
-            <br><br>
-            
+
+            <br>
+            <br>
+
             <h3>
                 <strong>Question 3</strong>
-            </h3><br>
+            </h3>
             <label for="q3_selection">
                 <h4>Not only are you a nail-biter, but you discard said nails onto the nearest carpet.</h4>
             </label>
-            <select class="custom-select mr-sm-2" id="q3_selection">
+            <select class="form-control custom-select mr-sm-2 col-3 question" id="q3_selection">
                 <option selected>Select an Option</option>
                 <option value="1">1 (Strongly disagree)</option>
                 <option value="2">2</option>
@@ -71,10 +73,14 @@
                 <option value="5">5(Strongly agree)</option>
             </select>
 
-            <hr>
+            
+            <!-- Button trigger modal -->
+            <button  href="/api/friends" type="submit" id="submit" class="btn btn-primary" data-toggle="modal" data-target="#results-modal">
+                Submit
+            </button>
 
-            <button type="submit" class="btn btn-primary mt-3 mb-0 float-left">Submit</button>
-        
+            
+           
         </form>
         <hr>
         <div class="footer">
@@ -84,33 +90,78 @@
                 <a href="https://github.com/JonathonMoore1/Friend-Finder">GitHub Repo</a>
             </div>
         </div>
-        
+
+
+
+    </div>
+
+<!-- Modal -->
+    <div class="modal fade" id="results-modal" tabindex="-1" role="dialog" style="display: none;">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="results-modal-label">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal">⤬
+                    </button>
+                    <h2>
+                        <strong>Best Match</strong>
+                    </h2>
+                </div>
+                <div class="modal-body">
+                    <h2 id="match-name"></h2>
+                    <img id="match-img">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
     </div>
 <script type="text/javascript">
-    // $(document).on('ready', function() {
-    //     var surveyArr = [
-    //         "Your mind is always buzzing with unexplored ideas and plans.",
-    //         "You don't mind if some clothes are left on the floor.",
-    //         "You're a nail-biter.",
-    //         "People frequently strike you as being 'too' nice.",
-    //         "People often complement you on your good looks and intelligence.",
-    //         "Negative interactions affect you more than others.",
-    //         "You'd rather watch a movie or read a book than spend time outdoors.",
-    //         "Other people wish they could be you, or at least with you."
-    //     ];
 
-    //     var questionSpace = $('#question-space');
 
-    //     for (i = 0; i < surveyArr.length; i++) {
-    //         var qDiv = "<div>";
+    // Other cool stuff
+    $('#submit').on('click', function (e) {
+        e.preventDefault();
 
-    //         var qTitle = '<h3>' + '<strong>' + 'Question ' + i + 1;
-    //         var qContent = '<h4>' + survey[i].val();
-            
-    //         qDiv.append(qTitle + qContent);
-    //         questionSpace.append(qDiv);
-    //     }
-    // })
+        // Form validation
+        function validateForm() {
+            var isValid = true;
+            $('.form-control').each(function () {
+                if ($(this).val() === "") {
+                    isValid = false;
+                }
+            });
+
+            // $('.chosen-selected').each(function() {
+            //     if ($(this).val() === "") {
+            //         isValid = false;
+            //     }
+            // });
+            return isValid;
+        };
+
+        if (validateForm()) {
+            // Grab form elements 
+            var newFriend = {
+                name: $('#name').val().trim(),
+                photo: $('#photo').val().trim(),
+                answers: [
+                    $('#q1_selection').val(),
+                    $('#q2_selection').val(),
+                    $('#q3_selection').val()
+                ]
+            }
+
+            $.post('/api/friends', newFriend, function (data) {
+                $('#match-name').text(data.name);
+                $('#match-img').attr('src', data.photo);
+                $('#results-modal').modal('toggle');
+            });
+        } else {
+            alert("Please fill out all fields before submitting!")
+        }
+    })
 </script>
 </body>
 </html>
