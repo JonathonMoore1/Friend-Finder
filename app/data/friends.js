@@ -5,6 +5,11 @@ var friendData = [
         scores: [
             5,
             5,
+            5,
+            5,
+            5,
+            5,
+            5,
             5
         ]
     }

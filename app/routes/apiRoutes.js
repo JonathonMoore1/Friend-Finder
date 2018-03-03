@@ -10,4 +10,9 @@ module.exports = function(app) {
         friendData.push(req.body);
         console.log("New cuddle buddy added to data object");
     });
+
+    app.post('api/clear', function(req, res) {
+        friendData = [];
+        console.log("friendData body has been deleted.");
+    });
 }
