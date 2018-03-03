@@ -26,7 +26,7 @@
                 <strong>Question 1</strong>
             </h3>
             <label for="q1_selection">
-                <h4>Your mind is bursting at the seams with ingenius ideas and plans.</h4>
+                <h4>Your mind is bursting at the seams with ingenious ideas and plans.</h4>
             </label>
             <select class="form-control custom-select mr-sm-2 col-3 question" id="q1_selection">
                 <option selected>Select an Option</option>
@@ -212,17 +212,17 @@
         e.preventDefault();
 
         // Form validation
-        function validateForm() {
-            var isValid = true;
-            $('.form-control').each(function () {
-                if ($(this).val() === "") {
-                    isValid = false;
-                }
-                //return isValid;
-            });           
-        };
+        // function validateForm() {
+        //     var isValid = true;
+        //     $('.form-control').each(function () {
+        //         if ($(this).val() === "") {
+        //             isValid = false;
+        //         }
+        //         return isValid;
+        //     });           
+        // };
 
-        if (validateForm()) {
+       // if (validateForm()) {
             // Grab form elements 
             var newFriend = {
                 name: $('#name').val().trim(),
@@ -240,17 +240,17 @@
             };
 
             $.post('/api/friends', newFriend, function (data) {
-
-                $('#match-name').text(data.name);
-                $('#match-img').attr('src', data.photo);
-                $('#results-modal').modal('toggle');
+                if (data) {
+                    $('#match-name').text(data.name);
+                    $('#match-img').attr('src', data.photo);
+                    $('#results-modal').modal('toggle');
+                }
             });
-        } 
-        else {
-            console.log("Submission attempted...");
-            alert("Please fill out all fields before submitting!");
-            
-        }
+       // } 
+        // else {
+        //     console.log("Submission attempted...");
+        //     alert("Please fill out all fields before submitting!");        
+        // }
     });
 </script>
 </body>
